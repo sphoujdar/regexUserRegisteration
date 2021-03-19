@@ -66,13 +66,21 @@ public class regexUserRegistration {
             System.out.println("Mobile Number String is invalid.");
         */
 
-        String passwordRegExpPattern = "^[a-zA-Z0-9\\.\\+\\*\\$\\^\\(\\)\\-#%&!]{8,}";
-        String passwordString = getUserInput(scanner, "Please Enter Valid Password:");
-        if(validatePattern(passwordString, passwordRegExpPattern)){
-            System.out.println("Password String is Valid.");
-        }else
-            System.out.println("Password String is invalid.");
+        //https://www.ocpsoft.org/tutorials/regular-expressions/password-regular-expression/
 
+        //String passwordRegExpPattern = "([\\w\\.\\+\\*\\$\\^\\(\\)\\-#%&@!]*[A-Z]+[\\w\\.\\+\\*\\$\\^\\(\\)\\-#%&@!]*){8,}";
+        //String passwordRegExpPattern = "([\\w\\.\\+\\*\\$\\^\\(\\)\\-#%&!@]*[A-Z]+[\\w\\.\\+\\*\\$\\^\\(\\)\\-#%&!@]*).{8,}";
+        String passwordRegExpPattern = "^(?=.*[A-Z]).{8,}$";
+        String[] passwordList= {"adwssdfrgsadw", "asdu2@q4515", "asd2@qU", "asdU2@q", "asdU2@qqq"};
+
+
+        for (int i = 0; i< passwordList.length; i++) {
+            String passwordString = passwordList[i];
+            if (validatePattern(passwordString, passwordRegExpPattern)) {
+                System.out.printf("Valid : %s\n",passwordList[i]);
+            } else
+                System.out.printf("Invalid : %s\n",passwordList[i]);
+        }
 
     }
 
