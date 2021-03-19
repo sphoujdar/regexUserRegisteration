@@ -1,19 +1,17 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+/*
+https://www.ocpsoft.org/tutorials/regular-expressions/password-regular-expression/ - for Positive lookahead eg
+https://stackoverflow.com/questions/10804732/difference-between-and - various uses of "?=" and similar "?" ops
+http://www.regular-expressions.info/ - large resource
+https://www3.ntu.edu.sg/home/ehchua/programming/howto/Regexe.html
+https://stackoverflow.com/questions/47545450/regex-match-any-single-character-one-character-only - generic explanation for single char match
+https://stackoverflow.com/questions/35060182/regex-only-one-special-char - for a specific eg of only 1 sp char in pwd
+*/
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class regexUserRegistration {
 
-    //Some Variables used throughout the program
-    static Scanner scanner = new Scanner(System.in);
-
-
-
-    public static String getUserInput(Scanner sc, String message){
-        System.out.printf("%s\n",message);
-        return sc.next();
-    }
 
     public static boolean validatePattern(String argument, String regExp){
         Pattern pattern = Pattern.compile(regExp);
@@ -21,24 +19,30 @@ public class regexUserRegistration {
         return matcher.matches();
     }
 
+    public static void testIfValidOutput(String regExpString, String[] testStrings, String printMessage){
+
+        System.out.printf("\n--------------------------------%s--------------------------------\n",printMessage);
+        for (String testString : testStrings) {
+            if (validatePattern(testString, regExpString)) {
+                System.out.printf("Valid : %s\n", testString);
+            } else
+                System.out.printf("Invalid : %s\n", testString);
+        }
+        System.out.println("-------------------------------------------------------------------------------------");
+    }
+
 
     public static void main(String[] args) {
 
-        /*
+        
         String firstNameRegExpPattern = "^[A-Z][a-z]{2,}";
-        String firstNameString = getUserInput(scanner, "Please Enter Valid First Name:");
-        if(validatePattern(firstNameString, firstNameRegExpPattern)){
-            System.out.println("First Name String is Valid.");
-        }else
-            System.out.println("First Name String is invalid.");
+        String[] firstNameList= {"Shubham", "Sh", "shubham", "Boo"};
+        testIfValidOutput(firstNameRegExpPattern, firstNameList, "First Name Validation");
+
 
         String lastNameRegExpPattern = "^[A-Z][a-z]{2,}";
-        String lastNameString = getUserInput(scanner, "Please Enter Valid Last Name:");
-
-        if(validatePattern(lastNameString, lastNameRegExpPattern)){
-            System.out.println("Last Name String is Valid.");
-        }else
-            System.out.println("Last Name String is invalid.");
+        String[] lastNameList= {"Phoujdar", "Ph", "phoujdar", "Hoo"};
+        testIfValidOutput(lastNameRegExpPattern, lastNameList, "Last Name Validation");
 
 
         String emailRegExpPattern = "^([A-Za-z0-9]+[\\.\\+-]?[A-Za-z0-9]+)+[\\@][a-zA-Z]+[\\.][a-zA-Z]{2,3}[\\.]?[a-zA-Z]{0,2}";
@@ -47,44 +51,17 @@ public class regexUserRegistration {
                              "abc+100@gmail.com", "abc", "abc@.com.my", "abc123@gmail.a", "abc123@.com",
                              "abc123@.com.com", ".abc@abc.com", "abc()*@gmail.com", "abc@%*.com", "abc..2002@gmail.com",
                              "abc.@gmail.com", "abc@abc@gmail.com", "abc@gmail.com.1a", "abc@gmail.com.aa.au"};
-
-
-        for (int i = 0; i< emailList.length; i++) {
-            String emailString = emailList[i];
-            if (validatePattern(emailString, emailRegExpPattern)) {
-                System.out.printf("Valid : %s\n",emailList[i]);
-            } else
-                System.out.printf("Invalid : %s\n",emailList[i]);
-        }
+        testIfValidOutput(emailRegExpPattern, emailList, "Email Address Validation");
 
 
         String mobileNumberRegExpPattern = "^[0-9]{2}[\\ ][0-9]{10}";
-        String mobileNumberString = getUserInput(scanner, "Please Enter Valid Mobile Number:");
-        if(validatePattern(mobileNumberString, mobileNumberRegExpPattern)){
-            System.out.println("Mobile Number String is Valid.");
-        }else
-            System.out.println("Mobile Number String is invalid.");
-        */
-
-        //https://www.ocpsoft.org/tutorials/regular-expressions/password-regular-expression/
-
-        //String passwordRegExpPattern = "([\\w\\.\\+\\*\\$\\^\\(\\)\\-#%&@!]*[A-Z]+[\\w\\.\\+\\*\\$\\^\\(\\)\\-#%&@!]*){8,}";
-        //String passwordRegExpPattern = "([\\w\\.\\+\\*\\$\\^\\(\\)\\-#%&!@]*[A-Z]+[\\w\\.\\+\\*\\$\\^\\(\\)\\-#%&!@]*).{8,}";
-        String passwordRegExpPattern = "^(?=.*[A-Z]).(?=.*[0-9]).{8,}$";
-        String[] passwordList= {"adwssdfrgsadw", "asdu2@q4515", "asd2@qU", "asdU2@q", "asdU2@qqq", "asdU2@qq#"};
+        String[] mobileNumberList= {"9822056132", "+919822056132", "91 9822056132", "+91 9822056132"};
+        testIfValidOutput(mobileNumberRegExpPattern, mobileNumberList, "Mobile Number Validation");
 
 
-        for (int i = 0; i< passwordList.length; i++) {
-            String passwordString = passwordList[i];
-            if (validatePattern(passwordString, passwordRegExpPattern)) {
-                System.out.printf("Valid : %s\n",passwordList[i]);
-            } else
-                System.out.printf("Invalid : %s\n",passwordList[i]);
-        }
+        String passwordRegExpPattern = "^(?=.*[A-Z])(?=.*[0-9]).{8,}$";
+        String[] passwordList= {"adwssdfrgsadw", "asdu2@q4515", "asd2@qU", "asdU2@q", "asdU2@qqq", "asdU2@@qqq", "asdU2@qq#"};
+        testIfValidOutput(passwordRegExpPattern, passwordList, "Password String Validation");
 
     }
-
-
-
-
 }
