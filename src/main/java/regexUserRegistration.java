@@ -24,6 +24,7 @@ public class regexUserRegistration {
 
     public static void main(String[] args) {
 
+        /*
         String firstNameRegExpPattern = "^[A-Z][a-z]{2,}";
         String firstNameString = getUserInput(scanner, "Please Enter Valid First Name:");
         if(validatePattern(firstNameString, firstNameRegExpPattern)){
@@ -55,6 +56,15 @@ public class regexUserRegistration {
             } else
                 System.out.printf("Invalid : %s\n",emailList[i]);
         }
+        */
+
+        String mobileNumberRegExpPattern = "^[0-9]{2}[\\ ][0-9]{10}";
+        String mobileNumberString = getUserInput(scanner, "Please Enter Valid Mobile Number:");
+        if(validatePattern(mobileNumberString, mobileNumberRegExpPattern)){
+            System.out.println("Mobile Number String is Valid.");
+        }else
+            System.out.println("Mobile Number String is invalid.");
+
 
 
 
