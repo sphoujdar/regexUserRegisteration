@@ -26,11 +26,18 @@ public class regexUserRegistration {
         String firstNameRegExpPattern = "^[A-Z][a-z]{2,}";
         String firstNameString;
         firstNameString = getUserInput(scanner, "Please Enter Valid First Name:");
-
         if(validatePattern(firstNameString, firstNameRegExpPattern)){
             System.out.println("First Name String is Valid.");
         }else
             System.out.println("First Name String is invalid.");
+
+        String lastNameRegExpPattern = "^[A-Z][a-z]{2,}";
+        String lastNameString;
+        lastNameString = getUserInput(scanner, "Please Enter Valid Last Name:");
+        if(validatePattern(lastNameString, lastNameRegExpPattern)){
+            System.out.println("Last Name String is Valid.");
+        }else
+            System.out.println("Last Name String is invalid.");
 
 
     }
