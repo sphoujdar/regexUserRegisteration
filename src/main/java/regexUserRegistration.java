@@ -70,8 +70,8 @@ public class regexUserRegistration {
 
         //String passwordRegExpPattern = "([\\w\\.\\+\\*\\$\\^\\(\\)\\-#%&@!]*[A-Z]+[\\w\\.\\+\\*\\$\\^\\(\\)\\-#%&@!]*){8,}";
         //String passwordRegExpPattern = "([\\w\\.\\+\\*\\$\\^\\(\\)\\-#%&!@]*[A-Z]+[\\w\\.\\+\\*\\$\\^\\(\\)\\-#%&!@]*).{8,}";
-        String passwordRegExpPattern = "^(?=.*[A-Z]).{8,}$";
-        String[] passwordList= {"adwssdfrgsadw", "asdu2@q4515", "asd2@qU", "asdU2@q", "asdU2@qqq"};
+        String passwordRegExpPattern = "^(?=.*[A-Z]).(?=.*[0-9]).{8,}$";
+        String[] passwordList= {"adwssdfrgsadw", "asdu2@q4515", "asd2@qU", "asdU2@q", "asdU2@qqq", "asdU2@qq#"};
 
 
         for (int i = 0; i< passwordList.length; i++) {
