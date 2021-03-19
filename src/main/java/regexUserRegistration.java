@@ -56,7 +56,7 @@ public class regexUserRegistration {
             } else
                 System.out.printf("Invalid : %s\n",emailList[i]);
         }
-        */
+
 
         String mobileNumberRegExpPattern = "^[0-9]{2}[\\ ][0-9]{10}";
         String mobileNumberString = getUserInput(scanner, "Please Enter Valid Mobile Number:");
@@ -64,8 +64,14 @@ public class regexUserRegistration {
             System.out.println("Mobile Number String is Valid.");
         }else
             System.out.println("Mobile Number String is invalid.");
+        */
 
-
+        String passwordRegExpPattern = "^[a-zA-Z0-9\\.\\+\\*\\$\\^\\(\\)\\-#%&!]{8,}";
+        String passwordString = getUserInput(scanner, "Please Enter Valid Password:");
+        if(validatePattern(passwordString, passwordRegExpPattern)){
+            System.out.println("Password String is Valid.");
+        }else
+            System.out.println("Password String is invalid.");
 
 
     }
