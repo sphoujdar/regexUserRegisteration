@@ -1,8 +1,13 @@
 package com.bridgelabz.regexProblems.test;
-import com.bridgelabz.regexProblems.regexUserRegistration;
 
+import com.bridgelabz.regexProblems.regexUserRegistration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class regexUserRegistrationTest {
     @Test
@@ -55,4 +60,7 @@ public class regexUserRegistrationTest {
         String firstName = "adwssdfrgsadw";
         Assertions.assertFalse(regexUserRegistration.validatePattern(firstName,regexUserRegistration.passwordRegExpPattern));
     }
+
 }
+
+
