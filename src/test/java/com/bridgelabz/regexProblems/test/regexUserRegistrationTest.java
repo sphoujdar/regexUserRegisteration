@@ -1,65 +1,62 @@
 package com.bridgelabz.regexProblems.test;
 
-import com.bridgelabz.regexProblems.regexUserRegistration;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
-import java.util.Arrays;
-import java.util.List;
+import com.bridgelabz.regexProblems.RegexUserRegistration;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class regexUserRegistrationTest {
     @Test
     public void givenFirstName_WhenValid_ShouldReturnTrue(){
         String firstName = "Shubham";
-        Assertions.assertTrue(regexUserRegistration.validatePattern(firstName,regexUserRegistration.firstNameRegExpPattern));
+        Assert.assertTrue(RegexUserRegistration.validatePattern(firstName, RegexUserRegistration.firstNameRegExpPattern));
     }
     @Test
     public void givenFirstName_WhenInvalid_ShouldReturnFalse(){
         String firstName = "Sh";
-        Assertions.assertFalse(regexUserRegistration.validatePattern(firstName,regexUserRegistration.firstNameRegExpPattern));
+        Assert.assertFalse(RegexUserRegistration.validatePattern(firstName, RegexUserRegistration.firstNameRegExpPattern));
     }
     @Test
     public void givenLastName_WhenValid_ShouldReturnTrue(){
         String firstName = "Phoujdar";
-        Assertions.assertTrue(regexUserRegistration.validatePattern(firstName,regexUserRegistration.firstNameRegExpPattern));
+        Assert.assertTrue(RegexUserRegistration.validatePattern(firstName, RegexUserRegistration.lastNameRegExpPattern));
     }
     @Test
     public void givenLastName_WhenInvalid_ShouldReturnFalse(){
         String firstName = "ph";
-        Assertions.assertFalse(regexUserRegistration.validatePattern(firstName,regexUserRegistration.firstNameRegExpPattern));
+        Assert.assertFalse(RegexUserRegistration.validatePattern(firstName, RegexUserRegistration.lastNameRegExpPattern));
     }
     @Test
     public void givenEmail_WhenValid_ShouldReturnTrue(){
         String firstName = "a.b1.00@abc.net";
-        Assertions.assertTrue(regexUserRegistration.validatePattern(firstName,regexUserRegistration.emailRegExpPattern));
+        Assert.assertTrue(RegexUserRegistration.validatePattern(firstName, RegexUserRegistration.emailRegExpPattern));
     }
     @Test
     public void givenEmail_WhenInvalid_ShouldReturnFalse(){
         String firstName = "abc";
-        Assertions.assertFalse(regexUserRegistration.validatePattern(firstName,regexUserRegistration.emailRegExpPattern));
+        Assert.assertFalse(RegexUserRegistration.validatePattern(firstName, RegexUserRegistration.emailRegExpPattern));
     }
     @Test
     public void givenMobileNumber_WhenValid_ShouldReturnTrue(){
         String firstName = "91 9822056132";
-        Assertions.assertTrue(regexUserRegistration.validatePattern(firstName,regexUserRegistration.mobileNumberRegExpPattern));
+        Assert.assertTrue(RegexUserRegistration.validatePattern(firstName, RegexUserRegistration.mobileNumberRegExpPattern));
     }
     @Test
     public void givenMobileNumber_WhenInvalid_ShouldReturnFalse(){
         String firstName = "+919822056132";
-        Assertions.assertFalse(regexUserRegistration.validatePattern(firstName,regexUserRegistration.mobileNumberRegExpPattern));
+        Assert.assertFalse(RegexUserRegistration.validatePattern(firstName, RegexUserRegistration.mobileNumberRegExpPattern));
     }
     @Test
     public void givenPassword_WhenValid_ShouldReturnTrue(){
         String firstName = "asdU2@q4515";
-        Assertions.assertTrue(regexUserRegistration.validatePattern(firstName,regexUserRegistration.passwordRegExpPattern));
+        Assert.assertTrue(RegexUserRegistration.validatePattern(firstName, RegexUserRegistration.passwordRegExpPattern));
     }
     @Test
     public void givenPassword_WhenInvalid_ShouldReturnFalse(){
         String firstName = "adwssdfrgsadw";
-        Assertions.assertFalse(regexUserRegistration.validatePattern(firstName,regexUserRegistration.passwordRegExpPattern));
+        Assert.assertFalse(RegexUserRegistration.validatePattern(firstName, RegexUserRegistration.passwordRegExpPattern));
     }
+
+
 
 }
 

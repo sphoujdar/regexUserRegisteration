@@ -1,8 +1,8 @@
 package com.bridgelabz.regexProblems.test;
 
-import com.bridgelabz.regexProblems.regexUserRegistration;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import com.bridgelabz.regexProblems.RegexUserRegistration;
+import org.junit.Assert;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
@@ -11,24 +11,48 @@ import java.util.List;
 
 @RunWith(Parameterized.class)
 public class EmailListTest {
-    String testEmail;
 
-    public EmailListTest(String testEmail) {
-        super();
-        this.testEmail = testEmail;
+    private String argument;
+    private boolean expectedValidation;
+
+    public EmailListTest(String argument, boolean expectedValidation) {
+        this.argument = argument;
+        this.expectedValidation = expectedValidation;
     }
 
     @Parameterized.Parameters
-    public static List<String> data() {
-        return Arrays.asList( "abc@yahoo.com" ,"abc-100@yahoo.com" ,"abc.100@yahoo.com", "abc111@abc.com", "abc-100@abc.net",
-                "abc.100@abc.com.au", "abc@1.com", "abc@gmail.com.com", "abc+100@gmail.com", "a.b1.00@abc.net", "abc", "abc@.com.my",
-                "abc123@gmail.a", "abc123@.com", "abc123@.com.com", ".abc@abc.com", "abc()*@gmail.com", "abc@%*.com",
-                "abc..2002@gmail.com", "abc.@gmail.com", "abc@abc@gmail.com", "abc@gmail.com.1a", "abc@gmail.com.aa.au"
-        );
+    public static List<Object[]> data() {
+        Object[][] data1 = new Object[][]{
+                {"abc@yahoo.com", true},
+                {"abc-100@yahoo.com", true},
+                {"abc.100@yahoo.com", true},
+                {"bc111@abc.com", true},
+                {"abc-100@abc.net", true},
+                {"abc.100@abc.com.au", true},
+                {"abc@1.com", true},
+                {"abc@gmail.com.com", true},
+                {"abc+100@gmail.com", true},
+                {"a.b1.00@abc.net", true},
+                {"abc", false},
+                {"abc@.com.my", false},
+                {"abc123@gmail.a", false},
+                {"abc123@.com", false},
+                {"abc123@.com.com", false},
+                {".abc@abc.com", false},
+                {"abc()*@gmail.com", false},
+                {"abc@%*.com", false},
+                {"abc..2002@gmail.com", false},
+                {"abc.@gmail.com", false},
+                {"abc@abc@gmail.com", false},
+                {"abc@gmail.com.1a", false},
+                {"abc@gmail.com.aa.au", false}
+        };
+        return Arrays.asList(data1);
     }
 
     @Test
-    public void testEmailList(){
-        Assertions.assertFalse(regexUserRegistration.validatePattern(testEmail,regexUserRegistration.emailRegExpPattern));
+    public void testEmailList() {
+        boolean result = new RegexUserRegistration().validatePattern(argument, RegexUserRegistration.emailRegExpPattern);
+        Assert.assertEquals(result, expectedValidation);
     }
 }
