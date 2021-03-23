@@ -7,37 +7,49 @@ https://stackoverflow.com/questions/47545450/regex-match-any-single-character-on
 https://stackoverflow.com/questions/35060182/regex-only-one-special-char - for a specific eg of only 1 sp char in pwd
 */
 package com.bridgelabz.regexProblems;
+import com.bridgelabz.regexProblemsExceptions.RegexUserRegistrationException;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegexUserRegistration {
-    public static final String firstNameRegExpPattern = "^[A-Z][a-zA-Z][0-9]{2,}";
+    public static final String firstNameRegExpPattern = "^[A-Z][a-z]{2,}";
     public static final String lastNameRegExpPattern = "^[A-Z][a-z]{2,}";
     public static final String emailRegExpPattern = "^([A-Za-z0-9]+[.+-]?[A-Za-z0-9]+)+[@][a-zA-Z0-9]+[.][a-zA-Z]{2,3}[.]?[a-zA-Z]{0,3}";
     //"^[a-zA-Z0-9]+([.+,-,_]?[a-zA-Z0-9]+)?[@][a-zA-Z]+[.][a-zA-Z]{2,4}([.][a-zA-Z]{2})?$"
     public static final String mobileNumberRegExpPattern = "^[0-9]{2}[\\ ][0-9]{10}";
     public static final String passwordRegExpPattern = "^(?=.*[A-Z])(?=.*[0-9]).{8,}$";
 
-    public static boolean validatePattern(String argument, String regExp){
-        Pattern pattern = Pattern.compile(regExp);
-        Matcher matcher = pattern.matcher(argument);
-        return matcher.matches();
+    public static boolean validatePattern(String argument, String regExp) throws RegexUserRegistrationException {
+        try {
+            Pattern pattern = Pattern.compile(regExp);
+            Matcher matcher = pattern.matcher(argument);
+            return matcher.matches();
+        } catch (NullPointerException e){
+            throw new RegexUserRegistrationException("Please enter valid input which is not null.");
+        }
     }
+
+
 
     // All code from this point is not required for running test cases and validating code working.
     public static void testIfValidOutput(String regExpString, String[] testStrings, String printMessage){
         System.out.printf("\n--------------------------------%s--------------------------------\n",printMessage);
         for (String testString : testStrings) {
-            if (validatePattern(testString, regExpString)) {
-                System.out.printf(" Valid  : %s\n", testString);
-            } else
-                System.out.printf("Invalid : %s\n", testString);
+            try {
+                if (validatePattern(testString, regExpString)) {
+                    System.out.printf(" Valid  : %s\n", testString);
+                } else
+                    System.out.printf("Invalid : %s\n", testString);
+            } catch (RegexUserRegistrationException e) {
+                e.printStackTrace();
+            }
         }
         System.out.println("-------------------------------------------------------------------------------------");
     }
 
     public static void main(String[] args) {
-        String[] firstNameList= {"ShUbham", "Sh", "shubham", "Boo888"};
+        String[] firstNameList= {"Shubham","Sh", "shubham", "Boo888", null, ""};
         testIfValidOutput(firstNameRegExpPattern, firstNameList, "First Name Validation");
 
         String[] lastNameList= {"Phoujdar", "Ph", "phoujdar", "Hoo"};
@@ -55,4 +67,8 @@ public class RegexUserRegistration {
         String[] passwordList= {"adwssdfrgsadw", "asdu2@q4515", "asd2@qU", "asdU2@q", "asdU2@qqq", "asdU2@@qqq", "asdU2@qq#"};
         testIfValidOutput(passwordRegExpPattern, passwordList, "Password String Validation");
     }
+
+
 }
+
+

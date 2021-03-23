@@ -1,6 +1,7 @@
 package com.bridgelabz.regexProblems.test;
 
 import com.bridgelabz.regexProblems.RegexUserRegistration;
+import com.bridgelabz.regexProblemsExceptions.RegexUserRegistrationException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -52,7 +53,12 @@ public class EmailListTest {
 
     @Test
     public void testEmailList() {
-        boolean result = new RegexUserRegistration().validatePattern(argument, RegexUserRegistration.emailRegExpPattern);
+        boolean result = false;
+        try {
+            result = new RegexUserRegistration().validatePattern(argument, RegexUserRegistration.emailRegExpPattern);
+        } catch (RegexUserRegistrationException e) {
+            e.printStackTrace();
+        }
         Assert.assertEquals(result, expectedValidation);
     }
 }
