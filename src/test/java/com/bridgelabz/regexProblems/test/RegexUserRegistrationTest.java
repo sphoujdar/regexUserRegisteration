@@ -7,12 +7,12 @@ import org.junit.Test;
 
 public class RegexUserRegistrationTest {
     @Test
-    public void givenString_WhenNull_ShouldReturnFalse(){
+    public void givenString_WhenNull_ShouldReturnExceptionMessage(){
         String testString = null;
         try {
-            Assert.assertFalse(RegexUserRegistration.validatePattern(testString, RegexUserRegistration.firstNameRegExpPattern));
+            RegexUserRegistration.validatePattern(testString, RegexUserRegistration.firstNameRegExpPattern);
         } catch (RegexUserRegistrationException e) {
-            System.out.println(e.getMessage());
+            Assert.assertEquals("Please enter valid input which is not null.", e.getMessage());
         }
     }
 

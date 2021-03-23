@@ -24,6 +24,7 @@ public class EmailListTest {
     @Parameterized.Parameters
     public static List<Object[]> data() {
         Object[][] data1 = new Object[][]{
+                {null, false},
                 {"abc@yahoo.com", true},
                 {"abc-100@yahoo.com", true},
                 {"abc.100@yahoo.com", true},
@@ -57,7 +58,7 @@ public class EmailListTest {
         try {
             result = new RegexUserRegistration().validatePattern(argument, RegexUserRegistration.emailRegExpPattern);
         } catch (RegexUserRegistrationException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         Assert.assertEquals(result, expectedValidation);
     }
