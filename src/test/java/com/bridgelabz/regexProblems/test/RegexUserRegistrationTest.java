@@ -12,7 +12,7 @@ public class RegexUserRegistrationTest {
         try {
             Assert.assertFalse(RegexUserRegistration.validatePattern(testString, RegexUserRegistration.firstNameRegExpPattern));
         } catch (RegexUserRegistrationException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 

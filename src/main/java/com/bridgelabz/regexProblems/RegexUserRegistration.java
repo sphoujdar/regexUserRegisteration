@@ -42,7 +42,7 @@ public class RegexUserRegistration {
                 } else
                     System.out.printf("Invalid : %s\n", testString);
             } catch (RegexUserRegistrationException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
         System.out.println("-------------------------------------------------------------------------------------");
